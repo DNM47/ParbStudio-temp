@@ -1,0 +1,42 @@
+{% extends 'main2.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% block content %}
+<style>
+    .form-containerbox {
+        padding-top: 100px;
+        padding-bottom: 60px;
+        width: 600px;
+        margin: 0 auto;
+    }
+    .form-containerbox h2 {
+        margin-top: 10px;
+        margin-bottom: 50px;
+    }
+    #div_id_proyectofotos > div {
+        max-height: 100px;
+        overflow: scroll;
+        border: 0.1px solid;
+        padding: 5px;
+        border-radius: 5px;
+        background-color: #fff;
+    }
+</style>
+
+<div class="form-containerbox">
+    <h2>Poyectos Creation</h2>
+
+    <form  class="post-form" action="" method="POST" enctype="multipart/form-data" >
+        {% csrf_token %}
+        {{form.media}}
+        {{form|crispy}}
+        <button type="submit">
+            Enviar
+            <div class="arrow-wrapper">
+                <div class="arrow"></div>
+            </div>
+        </button>
+    </form>
+</div>
+
+{% endblock %}

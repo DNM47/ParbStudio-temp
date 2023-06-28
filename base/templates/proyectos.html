@@ -1,0 +1,92 @@
+{% extends 'main.html' %}
+{% load static %}
+{% block content %}
+<style>
+    .proyectos-containerbox {
+        display: grid;
+        position: relative;
+        padding: 6% 20px;
+        margin: 0 40px;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .proyectos-containerbox h1 {
+        padding-top: 13%;
+        font-size: 8em;
+        margin: auto;
+    }
+
+    .fotos-container {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 40px;
+    }
+
+    .proyectos-img a {
+        text-decoration: none;
+        color: #555;
+    }
+
+    .proyectos-img img {
+        width: 100%;
+    }
+
+    .proyecto-titulo {
+        padding-top: 10px;
+        font-size: 2rem;
+        text-decoration: none;
+    }
+
+    @media screen and (max-width: 780px) {
+        .proyectos-containerbox {
+            display: block;
+            padding-top: 50px;
+            margin: 50px 20px;
+        }
+
+        .fotos-container {
+            display: block;
+        }
+
+        .proyectos-img {
+            padding-bottom: 40px;
+        }
+    }
+
+    @media screen and (max-width: 500px){
+        .proyectos-containerbox {
+            margin: 20px 10px;
+            padding-top: 20px;
+        }
+        .proyectos-img img {
+        width: 100%;
+        /* height: 400px; */
+        }
+    }
+
+</style>
+
+
+<div class="proyectos-containerbox">
+    <div class="fotos-container">
+
+        {% for post in posts %}
+        <div class="proyectos-img">
+            <a href="{% url 'proyectoinfo' post.slug %}">
+            <img src="{{post.foto.url}}">
+            <div class="proyecto-texto">
+                <h6 class="proyecto-titulo">{{post.descripcion}}</h6>
+                {% if request.user.is_authenticated %}
+                <a class="proyecto-edit" href="{% url 'updatepost' post.slug %}">Editar Proyecto</a>
+                | <a class="proyecto-delete" href="{% url 'deletepost' post.slug %}">Eliminar Proyecto</a>
+                {% endif %}
+            </div>
+            </a>
+        </div>
+        {% endfor %}
+        
+    </div>
+</div>
+
+{% endblock content %}

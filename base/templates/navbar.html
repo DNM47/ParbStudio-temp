@@ -1,0 +1,25 @@
+<section class="section-1" id="inicio">
+    <header>
+      <h1 class="space"></h1>
+      <nav class="navbar">
+        <div class="navbar-container">
+          <input type="checkbox" name="menu-btn" class="menu-btn" id="menu-btn">
+          <div class="hamburger">
+            <span class="bar bar1"></span>
+            <span class="bar bar2"></span>
+            <span class="bar bar3"></span>
+          </div>
+          <ul class="nav-menu">
+            {% if request.user.is_authenticated %}
+            <li class="list"><a href="{% url 'createpost' %}">Crear Proyecto</a></li>
+            {% endif %}
+            <li class="list"><a href="{% url 'home' %}#inicio">Inicio</a></li>
+            <li class=""><a href="{% url 'home' %}#estudio">Estudio</a></li>
+            <li class=""><a href="{% url 'home' %}#servicios">Servicios</a></li>
+            <li class=""><a href="{% url 'home' %}#proyectos">Proyectos</a></li>
+            <li class=""><a href="{% url 'home' %}#contacto">Contacto</a></li>
+          </ul>         
+        </div>
+      </nav>
+    </header>
+  </section>

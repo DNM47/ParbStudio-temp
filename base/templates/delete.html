@@ -1,0 +1,35 @@
+{% extends 'main.html' %}
+{% load static %}
+{% block content %}
+<style>
+    .delete-container {
+        padding: 20px 50px;
+        margin: 50px 100px;
+        text-align: center;
+    }
+    .delete-form {
+        display: block;
+    }
+    p {
+        padding: 20px;
+        font-size: 2rem;
+    }
+    button {
+        width: auto;
+    }
+</style>
+
+<div class="delete-container">
+    <form method="POST" action="" class="delete-form">
+        {% csrf_token %}
+        <p>Seguro que quieres eliminar {{item}}?</p>
+        <button type="submit">
+            Confirmar
+            <div class="arrow-wrapper">
+                <div class="arrow"></div>
+            </div>
+        </button>
+    </form>
+</div>
+
+{% endblock content %}

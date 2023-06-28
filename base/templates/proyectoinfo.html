@@ -1,0 +1,121 @@
+{% extends 'main.html' %}
+{% load static %}
+{% block content %}
+<style>
+    .containerbox {
+        display: grid;
+        grid-template-columns: 0.7fr 2fr;
+        margin-top: 30px;
+        margin-bottom: 50px;
+    }
+
+    .info {
+        margin-top: 50px;
+        margin-left: 40px;
+        padding-top: 20px;
+        text-align: justify;
+    }
+
+    .info h1 {
+        font-size: 2rem;
+    }
+
+    .info h3 {
+        font-size: 1.4rem;
+    }
+
+    .info p {
+        font-size: 1.2rem;
+        padding-right: 20px;
+    }
+
+    hr {
+        border: solid 1px;
+    }
+
+    .moodboard-foto {
+        padding-top: 70px;
+        width: 85%;
+    }
+
+    .proyectos-containerbox {
+        display: grid;
+        position: relative;
+        padding: 5% 20px;
+        margin: 0 20px;
+    }
+
+    .fotos-container {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 10px;
+    }
+
+    .proyectos-img img {
+        width: 100%;
+    }
+
+    @media screen and (max-width:1200px){
+        .proyectos-containerbox {
+            margin: 0 0 0 20px;
+        }
+        .fotos-container {
+            display: block;
+        }
+    }
+
+    @media screen and (max-width:800px){
+        .containerbox {
+            display: block;
+        }
+        .proyectos-containerbox {
+            margin: 0 20px;
+        }
+
+        .info {
+            margin: 50px 80px;
+        }
+    }
+
+    @media screen and (max-width:500px){
+        .proyectos-containerbox {
+            margin: 0;
+        }
+        .info {
+            margin: 50px;
+        }
+        
+    }
+
+</style>
+
+<div class="containerbox">
+    <div class="info">
+        <h1>{{post.title}}</h1>
+        <br>
+        <br>
+        <h3>{{post.ubicacion}}</h3>
+        <h3>{{post.tiposervicio}}</h3>
+        <h3>{{post.area}}</h3>
+        <br>
+        <hr>
+        <br>
+        <p>{{post.body1|safe}}</p>
+        <br>
+        <br>
+        <h1>MOOBOARD</h1>
+        <img src="{{post.moodboard.url}}" class="moodboard-foto">
+    </div>
+    <div class="proyectos-containerbox">
+        <div class="fotos-container">
+            {% for x in post.proyectofotos.all %}
+            <div class="proyectos-img">
+                <img src="{{x.foto.url}}">
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+
+
+{% endblock content %}
